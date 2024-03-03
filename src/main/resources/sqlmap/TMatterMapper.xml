@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.TMatterMapper">
+  <resultMap id="BaseResultMap" type="model.TMatter">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="apo_category" jdbcType="VARCHAR" property="apoCategory" />
+    <result column="dead_flg" jdbcType="TINYINT" property="deadFlg" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="app_category" jdbcType="VARCHAR" property="appCategory" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="looks_level" jdbcType="INTEGER" property="looksLevel" />
+    <result column="job" jdbcType="VARCHAR" property="job" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="fhase" jdbcType="VARCHAR" property="fhase" />
+    <result column="next_apo_date" jdbcType="TIMESTAMP" property="nextApoDate" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="complete_flg" jdbcType="TINYINT" property="completeFlg" />
+    <result column="apo_status" jdbcType="TINYINT" property="apoStatus" />
+    <result column="consume_money" jdbcType="INTEGER" property="consumeMoney" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    id, apo_category, dead_flg, nick_name, app_category, age, looks_level, job, address, 
+    fhase, next_apo_date, note, created_at, updated_at, complete_flg, apo_status, consume_money
+  </sql>
+  <select id="selectByExample" parameterType="model.TMatterExample" resultMap="BaseResultMap">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_matter
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    select 
+    <include refid="Base_Column_List" />
+    from t_matter
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    delete from t_matter
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="model.TMatterExample">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    delete from t_matter
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="model.TMatter">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_matter (apo_category, dead_flg, nick_name, 
+      app_category, age, looks_level, 
+      job, address, fhase, 
+      next_apo_date, note, created_at, 
+      updated_at, complete_flg, apo_status, 
+      consume_money)
+    values (#{apoCategory,jdbcType=VARCHAR}, #{deadFlg,jdbcType=TINYINT}, #{nickName,jdbcType=VARCHAR}, 
+      #{appCategory,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{looksLevel,jdbcType=INTEGER}, 
+      #{job,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{fhase,jdbcType=VARCHAR}, 
+      #{nextApoDate,jdbcType=TIMESTAMP}, #{note,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{completeFlg,jdbcType=TINYINT}, #{apoStatus,jdbcType=TINYINT}, 
+      #{consumeMoney,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="model.TMatter">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_matter
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="apoCategory != null">
+        apo_category,
+      </if>
+      <if test="deadFlg != null">
+        dead_flg,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="appCategory != null">
+        app_category,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="looksLevel != null">
+        looks_level,
+      </if>
+      <if test="job != null">
+        job,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="fhase != null">
+        fhase,
+      </if>
+      <if test="nextApoDate != null">
+        next_apo_date,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="completeFlg != null">
+        complete_flg,
+      </if>
+      <if test="apoStatus != null">
+        apo_status,
+      </if>
+      <if test="consumeMoney != null">
+        consume_money,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="apoCategory != null">
+        #{apoCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="deadFlg != null">
+        #{deadFlg,jdbcType=TINYINT},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="appCategory != null">
+        #{appCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="looksLevel != null">
+        #{looksLevel,jdbcType=INTEGER},
+      </if>
+      <if test="job != null">
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="fhase != null">
+        #{fhase,jdbcType=VARCHAR},
+      </if>
+      <if test="nextApoDate != null">
+        #{nextApoDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="completeFlg != null">
+        #{completeFlg,jdbcType=TINYINT},
+      </if>
+      <if test="apoStatus != null">
+        #{apoStatus,jdbcType=TINYINT},
+      </if>
+      <if test="consumeMoney != null">
+        #{consumeMoney,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="model.TMatterExample" resultType="java.lang.Long">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    select count(*) from t_matter
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    update t_matter
+    <set>
+      <if test="row.id != null">
+        id = #{row.id,jdbcType=INTEGER},
+      </if>
+      <if test="row.apoCategory != null">
+        apo_category = #{row.apoCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="row.deadFlg != null">
+        dead_flg = #{row.deadFlg,jdbcType=TINYINT},
+      </if>
+      <if test="row.nickName != null">
+        nick_name = #{row.nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="row.appCategory != null">
+        app_category = #{row.appCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="row.age != null">
+        age = #{row.age,jdbcType=INTEGER},
+      </if>
+      <if test="row.looksLevel != null">
+        looks_level = #{row.looksLevel,jdbcType=INTEGER},
+      </if>
+      <if test="row.job != null">
+        job = #{row.job,jdbcType=VARCHAR},
+      </if>
+      <if test="row.address != null">
+        address = #{row.address,jdbcType=VARCHAR},
+      </if>
+      <if test="row.fhase != null">
+        fhase = #{row.fhase,jdbcType=VARCHAR},
+      </if>
+      <if test="row.nextApoDate != null">
+        next_apo_date = #{row.nextApoDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.note != null">
+        note = #{row.note,jdbcType=VARCHAR},
+      </if>
+      <if test="row.createdAt != null">
+        created_at = #{row.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.updatedAt != null">
+        updated_at = #{row.updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.completeFlg != null">
+        complete_flg = #{row.completeFlg,jdbcType=TINYINT},
+      </if>
+      <if test="row.apoStatus != null">
+        apo_status = #{row.apoStatus,jdbcType=TINYINT},
+      </if>
+      <if test="row.consumeMoney != null">
+        consume_money = #{row.consumeMoney,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    update t_matter
+    set id = #{row.id,jdbcType=INTEGER},
+      apo_category = #{row.apoCategory,jdbcType=VARCHAR},
+      dead_flg = #{row.deadFlg,jdbcType=TINYINT},
+      nick_name = #{row.nickName,jdbcType=VARCHAR},
+      app_category = #{row.appCategory,jdbcType=VARCHAR},
+      age = #{row.age,jdbcType=INTEGER},
+      looks_level = #{row.looksLevel,jdbcType=INTEGER},
+      job = #{row.job,jdbcType=VARCHAR},
+      address = #{row.address,jdbcType=VARCHAR},
+      fhase = #{row.fhase,jdbcType=VARCHAR},
+      next_apo_date = #{row.nextApoDate,jdbcType=TIMESTAMP},
+      note = #{row.note,jdbcType=VARCHAR},
+      created_at = #{row.createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{row.updatedAt,jdbcType=TIMESTAMP},
+      complete_flg = #{row.completeFlg,jdbcType=TINYINT},
+      apo_status = #{row.apoStatus,jdbcType=TINYINT},
+      consume_money = #{row.consumeMoney,jdbcType=INTEGER}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="model.TMatter">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    update t_matter
+    <set>
+      <if test="apoCategory != null">
+        apo_category = #{apoCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="deadFlg != null">
+        dead_flg = #{deadFlg,jdbcType=TINYINT},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="appCategory != null">
+        app_category = #{appCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="looksLevel != null">
+        looks_level = #{looksLevel,jdbcType=INTEGER},
+      </if>
+      <if test="job != null">
+        job = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="fhase != null">
+        fhase = #{fhase,jdbcType=VARCHAR},
+      </if>
+      <if test="nextApoDate != null">
+        next_apo_date = #{nextApoDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="completeFlg != null">
+        complete_flg = #{completeFlg,jdbcType=TINYINT},
+      </if>
+      <if test="apoStatus != null">
+        apo_status = #{apoStatus,jdbcType=TINYINT},
+      </if>
+      <if test="consumeMoney != null">
+        consume_money = #{consumeMoney,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.TMatter">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    update t_matter
+    set apo_category = #{apoCategory,jdbcType=VARCHAR},
+      dead_flg = #{deadFlg,jdbcType=TINYINT},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      app_category = #{appCategory,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      looks_level = #{looksLevel,jdbcType=INTEGER},
+      job = #{job,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      fhase = #{fhase,jdbcType=VARCHAR},
+      next_apo_date = #{nextApoDate,jdbcType=TIMESTAMP},
+      note = #{note,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      complete_flg = #{completeFlg,jdbcType=TINYINT},
+      apo_status = #{apoStatus,jdbcType=TINYINT},
+      consume_money = #{consumeMoney,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="findTop10ByOrderByNextApoDateDesc" resultMap="BaseResultMap">
+    SELECT * FROM t_matter
+    ORDER BY next_apo_date DESC
+      LIMIT 10
+  </select>
+  <!-- 1:TMatterテーブルにおけるapo_resultが4以上のレコードの総数をカウントする -->
+  <select id="countApoResultGreaterThanOrEqualFour" resultType="java.lang.Integer">
+    SELECT COUNT(*)
+    FROM t_matter
+    WHERE apo_status >= 4
+  </select>
+  <!-- 2:resultが5以上のレコードの総数をカウントする -->
+  <select id="countResultGreaterThanOrEqualFive" resultType="java.lang.Integer">
+    SELECT COUNT(*)
+    FROM t_matter
+    WHERE apo_status >= 5
+  </select>
+  <!-- 3:過去1ヶ月間でapo_resultが4以上のレコードの総数をカウントする -->
+  <select id="countApoResultGreaterThanOrEqualFourLastMonth" resultType="java.lang.Integer">
+    SELECT COUNT(*)
+    FROM t_matter
+    WHERE apo_status >= 4
+      AND updated_at >= DATE_SUB(NOW(), INTERVAL 1 MONTH)
+  </select>
+  <!-- 4:過去1ヶ月間でapo_resultが5以上のレコード数の割合（apo_resultが4以上のレコード数に対する百分率）を計算する -->
+  <select id="percentageOfApoResultFiveOverFourLastMonth" resultType="java.lang.Double">
+    SELECT
+      CASE
+        WHEN (SELECT COUNT(*) FROM t_matter WHERE apo_status >= 4 AND updated_at >= DATE_SUB(NOW(), INTERVAL 1 MONTH)) = 0
+          THEN 0
+        ELSE
+          (SELECT COUNT(*) FROM t_matter WHERE apo_status >= 5 AND updated_at >= DATE_SUB(NOW(), INTERVAL 1 MONTH)) /
+          (SELECT COUNT(*) FROM t_matter WHERE apo_status >= 4 AND updated_at >= DATE_SUB(NOW(), INTERVAL 1 MONTH)) * 100
+        END
+  </select>
+  <!-- 5:過去1ヶ月間でapo_resultが4以上のレコードのconsume_moneyの合計額を算出する -->
+  <select id="sumConsumeMoneyApoResultGreaterThanOrEqualFourLastMonth" resultType="java.lang.Integer">
+    SELECT COALESCE(SUM(consume_money), 0)
+    FROM t_matter
+    WHERE apo_status >= 4
+      AND updated_at >= DATE_SUB(NOW(), INTERVAL 1 MONTH)
+  </select>
+  <!-- 6:特定の月におけるapo_resultが3以上のレコードの総数をカウントする -->
+  <select id="countApoResultGreaterThanOrEqualThreeByMonth" parameterType="java.util.Date" resultType="java.lang.Integer">
+    SELECT COUNT(*)
+    FROM t_matter
+    WHERE apo_status >= 3
+      AND MONTH(updated_at) = MONTH(#{processingMonth,jdbcType=TIMESTAMP})
+      AND YEAR(updated_at) = YEAR(#{processingMonth,jdbcType=TIMESTAMP})
+  </select>
+  <!-- 7:特定の月におけるapo_resultが5以上のレコード数の割合（apo_resultが4以上のレコード数に対する百分率）を計算する -->
+  <select id="percentageOfApoResultFiveOverFourByMonth" parameterType="java.util.Date" resultType="java.lang.Double">
+    SELECT
+      CASE
+        WHEN (SELECT COUNT(*) FROM t_matter WHERE apo_status >= 4 AND MONTH(updated_at) = MONTH(#{processingMonth,jdbcType=TIMESTAMP}) AND YEAR(updated_at) = YEAR(#{processingMonth,jdbcType=TIMESTAMP})) = 0 THEN 0
+            ELSE (SELECT COUNT(*) FROM t_matter WHERE apo_status >= 5 AND MONTH(updated_at) = MONTH(#{processingMonth,jdbcType=TIMESTAMP}) AND YEAR(updated_at) = YEAR(#{processingMonth,jdbcType=TIMESTAMP})) /
+                                                    (SELECT COUNT(*) FROM t_matter WHERE apo_status >= 4 AND MONTH(updated_at) = MONTH(#{processingMonth,jdbcType=TIMESTAMP}) AND YEAR(updated_at) = YEAR(#{processingMonth,jdbcType=TIMESTAMP})) * 100
+    END
+  </select>
+  <!-- 8:特定の月におけるapo_resultが4以上のレコードのconsume_moneyの合計額を算出する -->
+  <select id="sumConsumeMoneyApoResultGreaterThanOrEqualFourByMonth" parameterType="java.util.Date" resultType="java.lang.Integer">
+    SELECT COALESCE(SUM(consume_money), 0)
+    FROM t_matter
+    WHERE apo_status >= 4
+      AND MONTH(updated_at) = MONTH(#{processingMonth,jdbcType=TIMESTAMP})
+      AND YEAR(updated_at) = YEAR(#{processingMonth,jdbcType=TIMESTAMP})
+  </select>
+
+
+
+
+
+</mapper>
